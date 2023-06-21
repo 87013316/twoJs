@@ -1,0 +1,4 @@
+#忽略index.js 
+index.js  
+# 
+test/
