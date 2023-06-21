@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var arr=[2,5,8,3,6,9,1,4,7];
+ //
+    //   alert(arr);
+    /**
+     * 总共要比较  arr.length -1 轮
+     */
+    for(var i=0;i<arr.length-1;i++){
+        /**
+         *  每轮比较的
+         */
+        for(var j=0;j<arr.length-1-i;j++){
+            if(arr[j]>arr[j+1]){
+                var temp = arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+            }
+
+        }
+    }
+ //alert(arr)
+  console.log(arr)
+//-------------
+
+    var startDate = getDate("2023-05-24 13:08:49");
+    var nowDate = new Date();
+    var resultTime = nowDate - startDate;
+
+    alert(resultTime);
+    alert(dateTimeDiff(resultTime));
+    /*
+         * 将日期字符串转化为Date
+         * (如：将"2016-12-24 20:13:14"转化为Date格式)
+         * @param d：待转化字符串(传入的时间不能有毫秒)
+         */
+    function getDate(d) {
+        //部分浏览器(IE)不支持日期格式“yyyy-MM-dd hh:mm:ss”,必须将“-”转化为“/”
+        var date = new Date(Date.parse(d.replace(/-/g, "/")));
+        return date;
+    }
+
+    /**
+     *  在线时长 ，将时候串转成  时 -- 分 --秒
+     * */
+
+    function dateTimeDiff(resTimeLong) {
+        var seconds = resTimeLong / 1000;
+        if (seconds <= 60) {
+            return seconds + "sec";
+        }
+        if (60 < seconds && seconds <= 3600) {
+            // return Math.floor(seconds / 60) + ":" + (seconds % 60) + "min";
+            return Math.floor((seconds % 3600) / 60) + "分" + Math.floor(((seconds % 3600) % 60)) + "秒";
+        }
+        if (3600 < seconds &&  seconds<= 216000) {
+            // return Math.floor(seconds / 3600) + ":" + Math.floor((seconds % 3600) / 60) + ":" + ((seconds % 3600) % 60) + "h";
+            var  h=Math.floor(seconds / 3600) + "小时" + Math.floor((seconds % 3600) / 60) + "分" + Math.floor(((seconds % 3600) % 60)) + "秒";
+            return  h;
+            //return Math.floor(seconds / 3600) + ":" + Math.floor((seconds % 3600) / 60) + ":" + ((seconds % 3600) % 60) + "h";
+        }
+    }
+
+
+</script>
+</body>
+</html>
